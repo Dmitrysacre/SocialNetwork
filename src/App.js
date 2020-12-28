@@ -2,13 +2,13 @@ import React from 'react'
 import Header from './Components/Header/Header'
 import Navbar from './Components/Navbar/Navbar'
 import Profile from './Components/Profile/Profile'
-import Dialogs from './Components/Dialogs/Dialogs'
-import News from './Components/News/News'
-import Music from './Components/Music/Music'
-import Settings from './Components/Settings/Settings'
+import Dialogs from './Components/Pages/Dialogs/Dialogs'
+import News from './Components/Pages/News/News'
+import Music from './Components/Pages/Music/Music'
+import Settings from './Components/Pages/Settings/Settings'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
-function App() {
+function App(props) {
 
   return (
    <BrowserRouter>
@@ -18,11 +18,11 @@ function App() {
       <div className="row pt-3">
       <Navbar></Navbar>
       <Switch>
-      <Route path='/dialogs' component={Dialogs}></Route>
-      <Route path='/profile' component={Profile}></Route>
-      <Route path='/news' component={News}></Route>
-      <Route path='/music' component={Music}></Route>
-      <Route path='/settings' component={Settings}></Route>
+        <Route exact path='/dialogues' render={() => <Dialogs dialogues={props.dialogues} messages={props.messages}></Dialogs>}></Route>
+        <Route path='/profile' render={() => <Profile posts={props.posts}></Profile>}></Route>
+        <Route path='/news' render={() => <News></News>}></Route>
+        <Route path='/music' render={() => <Music></Music>}></Route>
+        <Route path='/settings' render={() => <Settings></Settings>}></Route>
       </Switch>
       </div>
 

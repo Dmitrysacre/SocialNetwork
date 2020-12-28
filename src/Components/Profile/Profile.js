@@ -2,12 +2,11 @@ import React from 'react'
 import Avatar from './Avatar'
 import MyPosts from './MyPosts/MyPosts'
 
-const Profile = () => {
+const Profile = (props) => {
     return (
             <div className="col">
-                <h1>Profile</h1>
                 <Avatar></Avatar>
-                <MyPosts></MyPosts>
+                <MyPosts posts={props.posts}></MyPosts>
             </div>
     )
 }
