@@ -19,7 +19,7 @@ function App(props) {
       <Navbar></Navbar>
       <Switch>
         <Route exact path='/dialogues' render={() => <Dialogs dialogues={props.state.dialogues.dialogues} messages={props.state.dialogues.messages}></Dialogs>}></Route>
-        <Route path='/profile' render={() => <Profile posts={props.state.profile.posts} addPost={props.addPost}></Profile>}></Route>
+        <Route path='/profile' render={() => <Profile profile={props.state.profile} addPost={props.addPost} updateNewPost={props.updateNewPost}></Profile>}></Route>
         <Route path='/news' render={() => <News></News>}></Route>
         <Route path='/music' render={() => <Music></Music>}></Route>
         <Route path='/settings' render={() => <Settings></Settings>}></Route>

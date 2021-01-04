@@ -1,4 +1,6 @@
-import rerenderApp from "../render"
+let rerenderApp = () => {
+  console.log('changed')
+}
 
 const state = {
    profile: {
@@ -6,7 +8,8 @@ const state = {
         {id: 1, text: 'This is my first post, This is my first post, '},
         {id: 2, text: 'This is my second post'},
         {id: 3, text: 'This is my third post'}
-    ]
+    ],
+    postValue: 'etxt'
    },
 
    dialogues: {
@@ -26,16 +29,20 @@ const state = {
    }
 }
 
-export function addPost(text) {
-
-    const newPost = {
-      id: 4,
-      text
-    }
-  
+export function addPost() {
+    const newPost = {id: new Date(), text: state.profile.postValue}
     state.profile.posts.push(newPost)
+    state.profile.postValue = ''
     rerenderApp(state)
   }
 
+export function updateNewPost(text) {
+  state.profile.postValue = text
+  rerenderApp(state)
+}
+
+export const subscribe = observer => {
+  rerenderApp = observer
+}
 
 export default state
