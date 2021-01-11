@@ -18,8 +18,8 @@ function App(props) {
       <div className="row pt-3">
       <Navbar></Navbar>
       <Switch>
-        <Route exact path='/dialogues' render={() => <Dialogs dialogues={props.state.dialogues.dialogues} messages={props.state.dialogues.messages}></Dialogs>}></Route>
-        <Route path='/profile' render={() => <Profile profile={props.state.profile} addPost={props.addPost} updateNewPost={props.updateNewPost}></Profile>}></Route>
+        <Route exact path='/dialogues' render={() => <Dialogs dialogues={props.state.dialogues} dispatch={props.dispatch}></Dialogs>}></Route>
+        <Route path='/profile' render={() => <Profile profile={props.state.profile} dispatch={props.dispatch}></Profile>}></Route>
         <Route path='/news' render={() => <News></News>}></Route>
         <Route path='/music' render={() => <Music></Music>}></Route>
         <Route path='/settings' render={() => <Settings></Settings>}></Route>

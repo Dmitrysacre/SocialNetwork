@@ -6,14 +6,12 @@ const MyPosts = (props) => {
     const newPostItem = React.createRef()
 
     const buttonHandler = () => {
-        props.addPost()
+        props.dispatch({ type: 'ADD-POST' })
     }
 
     const textareaHandler = () => {
         const text = newPostItem.current.value
-        props.updateNewPost(text)
-        console.log(text)
-        console.log(props.profile.postValue)
+        props.dispatch({ type: 'UPDATE-NEW-POST', text})
     }
 
     return (

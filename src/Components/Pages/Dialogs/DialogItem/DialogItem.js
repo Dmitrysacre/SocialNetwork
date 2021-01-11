@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const DialogItem = ({ dialog, index}) => {
+const DialogItem = ({ dialog }) => {
     return (
         <li className="list-group-item d-flex justify-content-between align-items-center">
             <img src="..." alt="" className="img-thumbnail size"></img>
