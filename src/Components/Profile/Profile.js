@@ -1,12 +1,12 @@
 import React from 'react'
 import Avatar from './Avatar'
-import MyPosts from './MyPosts/MyPosts'
+import MyPostsContainer from './MyPosts/MyPostsContainer'
 
 const Profile = (props) => {
     return (
             <div className="col">
                 <Avatar></Avatar>
-                <MyPosts profile={props.profile} dispatch={props.dispatch}></MyPosts>
+                <MyPostsContainer store={props.store}></MyPostsContainer>
             </div>
     )
 }

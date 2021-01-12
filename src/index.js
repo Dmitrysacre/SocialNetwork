@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom'
 import './index.scss'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import store from './redux/store'
+import store from './redux/redux-store'
 
 const rerenderApp = (state) => {
   ReactDOM.render(
       <React.StrictMode>
-        <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
+        <App state={store.getState()} dispatch={store.dispatch.bind(store)} store={store}/>
       </React.StrictMode>,
       document.getElementById('root')
     )

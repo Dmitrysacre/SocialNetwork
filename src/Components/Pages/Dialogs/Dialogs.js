@@ -8,11 +8,11 @@ const Dialogs = (props) => {
 
     const textAreaHandler = () => {
         const text = newMessageTextItem.current.value
-        props.dispatch({ type: 'UPDATE-NEW-MESSAGE', text })
+        props.updateNewMessage(text)
     }
 
     const buttonHandler = () => {
-        props.dispatch({ type: 'SEND-MESSAGE' })
+        props.sendMessage()
     }
 
     return (
@@ -20,13 +20,13 @@ const Dialogs = (props) => {
 
         <div className="d-flex">
             <ul className="list-group">
-                {props.dialogues.dialogues.map((dialog, i) => {
+                {props.dialogues.map((dialog, i) => {
                     return <DialogItem dialog={dialog} index={i} key={dialog.id}></DialogItem>
                 })}
             </ul>
 
             <ul className="list-group ml-1">
-                {props.dialogues.messages.map((message, i) => {
+                {props.messages.map(message => {
                     return <Message message={message} key={message.id}></Message>
                 })}
             </ul>

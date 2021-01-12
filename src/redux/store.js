@@ -1,3 +1,6 @@
+import dialoguesReducer from './dialoguesReducer'
+import profileReducer from './profileReducer'
+
 const store = {
 
   _state: {
@@ -41,26 +44,13 @@ const store = {
   },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
-      const newPost = {id: new Date(), text: store.getState().profile.postValue}
-      store.getState().profile.posts.push(newPost)
-      store.getState().profile.postValue = ''
-      this._rerenderApp(store.getState())
-    }
-    else if (action.type === 'UPDATE-NEW-POST') {
-      store.getState().profile.postValue = action.text
-      this._rerenderApp(store.getState())
-    }
-    else if (action.type === 'UPDATE-NEW-MESSAGE') {
-      store.getState().dialogues.messageText = action.text
-      this._rerenderApp(store.getState())
-    }
-    else if (action.type === 'SEND-MESSAGE') {
-      const bodyText = store.getState().dialogues.messageText
-      store.getState().dialogues.messageText = ''
-      store.getState().dialogues.messages.push({id: new Date(), text: bodyText})
-      this._rerenderApp(store.getState())
-    }
+
+    this._state.profile = profileReducer(this._state.profile, action)
+
+    this._state.dialogues = dialoguesReducer(this._state.dialogues, action)
+
+    this._rerenderApp()
+
   }
   
 }
