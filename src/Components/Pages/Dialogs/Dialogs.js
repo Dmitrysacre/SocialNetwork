@@ -2,7 +2,7 @@ import React from 'react'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 
-const Dialogs = (props) => {
+const Dialogues = (props) => {
 
     const newMessageTextItem = React.createRef()
 
@@ -39,4 +39,4 @@ const Dialogs = (props) => {
     )
 }
 
-export default Dialogs
+export default Dialogues

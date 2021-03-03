@@ -1,21 +1,20 @@
-import React from 'react'
-import Dialogs from './Dialogs'
+import { connect } from 'react-redux'
+import Dialogues from './Dialogs'
 
-const DialogsContainer = (props) => {
-
-    const state = props.store.getState()
-
-    const updateNewMessage = (text) => {
-        props.store.dispatch({ type: 'UPDATE-NEW-MESSAGE', text })
+const mapStateToProps = (state) => {
+    return {
+        dialogues: state.dialogues.dialogues,
+        messages: state.dialogues.messages
     }
-
-    const sendMessage = () => {
-        props.store.dispatch({ type: 'SEND-MESSAGE' })
-    }
-
-    return (
-        <Dialogs updateNewMessage={updateNewMessage} sendMessage={sendMessage} messages={state.dialogues.messages} dialogues={state.dialogues.dialogues}></Dialogs>
-    )
 }
 
-export default DialogsContainer
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateNewMessage: text => dispatch({ type: 'UPDATE-NEW-MESSAGE', text }),
+        sendMessage: () => dispatch({ type: 'SEND-MESSAGE' })
+    }
+}
+
+const DialoguesContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogues)
+
+export default DialoguesContainer
