@@ -7,6 +7,7 @@ import DialogsContainer from './Components/Pages/Dialogs/DialogsContainer'
 import News from './Components/Pages/News/News'
 import Music from './Components/Pages/Music/Music'
 import Settings from './Components/Pages/Settings/Settings'
+import UsersContainer from './Components/Pages/Users/UsersContainer'
 
 function App(props) {
 
@@ -18,8 +19,9 @@ function App(props) {
       <div className="row pt-3">
       <Navbar></Navbar>
       <Switch>
-        <Route exact path='/dialogues' render={() => <DialogsContainer store={props.store}></DialogsContainer>}></Route>
-        <Route path='/profile' render={() => <Profile store={props.store}></Profile>}></Route>
+        <Route exact path='/dialogues' render={() => <DialogsContainer></DialogsContainer>}></Route>
+        <Route path='/profile' render={() => <Profile></Profile>}></Route>
+        <Route path='/users' render={() => <UsersContainer></UsersContainer>}></Route>
         <Route path='/news' render={() => <News></News>}></Route>
         <Route path='/music' render={() => <Music></Music>}></Route>
         <Route path='/settings' render={() => <Settings></Settings>}></Route>

@@ -3,7 +3,8 @@ import MyPosts from './MyPosts'
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.profile.posts
+        posts: state.profile.posts,
+        postValue: state.profile.postValue
     }
 }
 

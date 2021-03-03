@@ -32,7 +32,7 @@ const Dialogues = (props) => {
             </ul>
             </div>
 
-            <textarea className="form-control mt-2" value={props.dialogues.messageText} onChange={textAreaHandler} ref={newMessageTextItem} required></textarea>
+            <textarea className="form-control mt-2" value={props.messageText} onChange={textAreaHandler} ref={newMessageTextItem} required></textarea>
             <button type="button" className="btn btn-primary" onClick={buttonHandler}>Send Message</button>
     </div>
 

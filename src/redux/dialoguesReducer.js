@@ -6,31 +6,31 @@ const initialState = {
         {id: 4, text: 'How are you'},
         {id: 5, text: 'Tomorrow it can be'},
         {id: 6, text: 'Lets party tonight'},
+        {id: 7, text: 'Oh, very good'},
     ],
     dialogues: [
         {id: 1, name: 'Дмитрий', count: 6},
         {id: 2, name: 'Антон', count: 20},
         {id: 3, name: 'Екатерина', count: 17},
     ],
-    messageText: 'text'
+    messageText: ''
 }
 
 function dialoguesReducer(state = initialState, action) {
 
     switch(action.type) {
         case 'UPDATE-NEW-MESSAGE': {
-        const stateCopy = {...state}
-        stateCopy.messageText = action.text
-        return stateCopy
+            return {
+                ...state,
+                messageText: action.text,
+            }
         }
         case 'SEND-MESSAGE': {
-        const stateCopy = {...state}
-        stateCopy.messages = [...state.messages]
-        stateCopy.dialogues = [...state.dialogues]
-        const bodyText = stateCopy.messageText
-        stateCopy.messageText = ''
-        stateCopy.messages.push({id: new Date(), text: bodyText})
-        return stateCopy
+            return {
+                ...state,
+                messages: [...state.messages, {id: new Date(), text: state.messageText}],
+                messageText: ''
+            }
         }
 
         default: return state
