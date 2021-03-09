@@ -4,7 +4,8 @@ const initialState = {
         {id: 2, text: 'This is my second post'},
         {id: 3, text: 'This is my third post'}
     ],
-    postValue: ''
+    postValue: '',
+    profile: null
 }
 
 function profileReducer(state = initialState, action) {
@@ -21,6 +22,11 @@ function profileReducer(state = initialState, action) {
           ...state,
           posts: [...state.posts, {id: Date.now(), text: state.postValue} ],
           postValue: ''
+        }
+      }
+      case 'SET-USER-PROFILE': {
+        return {
+          ...state, profile: action.profile
         }
       }
       default: return state

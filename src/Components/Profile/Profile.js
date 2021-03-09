@@ -1,12 +1,12 @@
 import React from 'react'
-import Avatar from './Avatar'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 
 const Profile = (props) => {
     return (
             <div className="col">
-                <Avatar></Avatar>
-                <MyPostsContainer store={props.store}></MyPostsContainer>
+                <ProfileInfo profile={props.profile} userPhoto={props.userPhoto}></ProfileInfo>
+                <MyPostsContainer></MyPostsContainer>
             </div>
     )
 }

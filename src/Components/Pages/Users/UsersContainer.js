@@ -1,34 +1,39 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as axios from "axios";
 import Users from "./Users";
 import userPhoto from "../../../assets/images/user.jpg";
+import {
+  follow,
+  unFollow,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  toggleOnLoading,
+} from "../../../redux/usersReducer";
+import {getUsers} from "../../../api/api";
 
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
+    this.props.toggleOnLoading(true);
+      getUsers(this.props.currentPage, this.props.pageSize)
+      .then((data) => {
+        this.props.setUsers(data.items);
+        this.props.setTotalUsersCount(data.totalCount);
+        this.props.toggleOnLoading(false);
       });
   }
 
   onChangeHandler = (p) => {
+    this.props.toggleOnLoading(true);
     this.props.setCurrentPage(p);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
+    getUsers(this.props.currentPage, this.props.pageSize)
       .then((response) => {
         this.props.setUsers(response.data.items);
+        this.props.toggleOnLoading(false);
       });
   };
 
   render() {
-
     const pagesCount = Math.ceil(
       this.props.totalUsersCount / this.props.pageSize
     );
@@ -47,6 +52,7 @@ class UsersAPIComponent extends React.Component {
         follow={this.props.follow}
         unFollow={this.props.unFollow}
         userPhoto={userPhoto}
+        onLoading={this.props.onLoading}
       ></Users>
     );
   }
@@ -58,19 +64,17 @@ const mapStateToProps = (state) => {
     pageSize: state.users.pageSize,
     totalUsersCount: state.users.totalUsersCount,
     currentPage: state.users.currentPage,
+    onLoading: state.users.onLoading,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userID) => dispatch({ type: "FOLLOW", userID }),
-    unFollow: (userID) => dispatch({ type: "UNFOLLOW", userID }),
-    setUsers: (users) => dispatch({ type: "SET-USERS", users }),
-    setCurrentPage: (currentPage) => dispatch({ type: "SET-CURRENT-PAGE", currentPage }),
-    setTotalUsersCount: (totalUsersCount) => dispatch({ type: "SET-TOTAL-USERS-COUNT", totalUsersCount }),
-  };
-};
-
-const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(UsersAPIComponent);
+const UsersContainer = connect(mapStateToProps, {
+  follow,
+  unFollow,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  toggleOnLoading,
+})(UsersAPIComponent);
 
 export default UsersContainer;
