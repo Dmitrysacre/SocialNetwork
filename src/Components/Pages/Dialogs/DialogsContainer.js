@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Dialogues from './Dialogs'
+import {updateNewMessage, sendMessage} from '../../../redux/dialoguesReducer'
 
 const mapStateToProps = (state) => {
     return {
@@ -9,13 +10,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        updateNewMessage: text => dispatch({ type: 'UPDATE-NEW-MESSAGE', text }),
-        sendMessage: () => dispatch({ type: 'SEND-MESSAGE' })
-    }
-}
-
-const DialoguesContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogues)
+const DialoguesContainer = connect(mapStateToProps, {updateNewMessage, sendMessage})(Dialogues)
 
 export default DialoguesContainer

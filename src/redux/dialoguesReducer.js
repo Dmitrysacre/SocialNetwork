@@ -1,3 +1,6 @@
+const UPDATE_NEW_MESSAGE = 'UPDATE_NEW_MESSAGE'
+const SEND_MESSAGE = 'SEND_MESSAGE'
+
 const initialState = {
     messages: [
         {id: 1, text: 'Is everything ok?'},
@@ -19,13 +22,13 @@ const initialState = {
 function dialoguesReducer(state = initialState, action) {
 
     switch(action.type) {
-        case 'UPDATE-NEW-MESSAGE': {
+        case 'UPDATE_NEW_MESSAGE': {
             return {
                 ...state,
                 messageText: action.text,
             }
         }
-        case 'SEND-MESSAGE': {
+        case 'SEND_MESSAGE': {
             return {
                 ...state,
                 messages: [...state.messages, {id: new Date(), text: state.messageText}],
@@ -36,5 +39,13 @@ function dialoguesReducer(state = initialState, action) {
         default: return state
     }
 }
+
+export const updateNewMessage = (text) => ({
+    type: UPDATE_NEW_MESSAGE, text
+})
+
+export const sendMessage = () => ({
+    type: SEND_MESSAGE
+})
 
 export default dialoguesReducer

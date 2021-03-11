@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Loader from "../../common/Loader/Loader";
@@ -39,47 +38,22 @@ const Users = (props) => {
           <div>
             {user.followed ? (
               <button
+                disabled={props.followingInProgress.some(
+                  (id) => user.id === id
+                )}
                 className="btn-primary"
-                onClick={() => {
-                  axios
-                    .delete(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                      {
-                        withCredentials: true,
-                        headers: {
-                          "API-KEY": "3c65e3c0-b6b0-4117-8ec8-35b3d5a20261",
-                        },
-                      }
-                    )
-                    .then((response) => {
-                      console.log(response.data)
-                      if (response.data.resultCode === 0) {
-                        props.unFollow(user.id);
-                      }
-                    });
-                }}
+                onClick={() => props.unfollowThunkCreator(user.id)}
               >
                 Unfollow
               </button>
             ) : (
               <button
+                disabled={props.followingInProgress.some(
+                  (id) => id === user.id
+                )}
                 className="btn-primary"
                 onClick={() => {
-                  axios
-                    .post(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},
-                      {
-                        withCredentials: true,
-                        headers: {
-                          "API-KEY": "3c65e3c0-b6b0-4117-8ec8-35b3d5a20261",
-                        },
-                      }
-                    )
-                    .then((response) => {
-                      if (response.data.resultCode === 0) {
-                        props.follow(user.id);
-                      }
-                    });
+                  props.followThunkCreator(user.id);
                 }}
               >
                 Follow

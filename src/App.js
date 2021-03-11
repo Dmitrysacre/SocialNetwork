@@ -8,6 +8,7 @@ import Settings from "./Components/Pages/Settings/Settings";
 import UsersContainer from "./Components/Pages/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
+import Login from "./Components/Login/Login";
 
 function App(props) {
   return (
@@ -37,6 +38,7 @@ function App(props) {
               path="/settings"
               render={() => <Settings></Settings>}
             ></Route>
+            <Route path="/login" render={() => <Login></Login>}></Route>
           </Switch>
         </div>
       </div>
