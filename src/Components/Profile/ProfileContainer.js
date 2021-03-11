@@ -1,10 +1,11 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import { Redirect, withRouter } from "react-router";
+import { withRouter } from "react-router";
 import userPhoto from "../../assets/images/user.jpg";
-import { setUserProfile } from "../../redux/profileReducer";
-import {getUserProfileThunkCreator} from '../../redux/profileReducer'
+import { getUserProfileThunkCreator } from "../../redux/profileReducer";
+import WithAuthRedicrect from "../../hoc/WithAuthRedirect";
+import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -12,11 +13,10 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    this.props.getUserProfileThunkCreator(userId)
+    this.props.getUserProfileThunkCreator(userId);
   }
 
   render() {
-    if (!this.props.isAuth) return <Redirect to="/login"></Redirect>;
     return (
       <div>
         <Profile
@@ -36,8 +36,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const WithUrlDataContainerComponent = withRouter(ProfileContainer);
-
-export default connect(mapStateToProps, { setUserProfile, getUserProfileThunkCreator })(
-  WithUrlDataContainerComponent
-);
+export default compose(
+  connect(mapStateToProps, {
+    getUserProfileThunkCreator,
+  }),
+  withRouter,
+  WithAuthRedicrect
+)(ProfileContainer)

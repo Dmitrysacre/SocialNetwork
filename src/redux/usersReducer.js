@@ -122,9 +122,9 @@ export const unfollowThunkCreator = (id) => {
   export const followThunkCreator = (id) => {
     return (dispatch) => {
         dispatch(toggleIsFollowingProgress(true, id));
-        unfollow(id).then((response) => {
+        follow(id).then((response) => {
           if (response.data.resultCode === 0) {
-            dispatch(unFollowUser(id));
+            dispatch(followUser(id));
           }
           dispatch(toggleIsFollowingProgress(false, id));
         });
