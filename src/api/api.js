@@ -29,3 +29,11 @@ export const unfollow = (id) => {
 export const follow = (id) => {
   return axiosConfig.post(`follow/${id}`, {});
 };
+
+export const getStatus = (id) => {
+  return axiosConfig.get(`profile/status/${id}`);
+};
+
+export const updateStatus = (status) => {
+  return axiosConfig.put(`profile/status`, {status})
+};
