@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Music = () => {
+const Music = (props) => {
     return (
         <h1>Music</h1>
     )

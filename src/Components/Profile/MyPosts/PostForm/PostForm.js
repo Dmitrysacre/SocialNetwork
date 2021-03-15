@@ -1,22 +1,8 @@
-import React from "react";
-import Post from "./Post/Post";
-import { Field, reduxForm } from "redux-form";
+import React from 'react'
 
-const MyPosts = (props) => {
-  const newPostItem = React.createRef();
-
-  const buttonHandler = () => {
-    props.addPost();
-  };
-
-  const textareaHandler = () => {
-    const text = newPostItem.current.value;
-    props.updateNewPost(text);
-  };
-
-  return (
-    <div>
-      <form className="mt-4 mb-4">
+const PostForm = (props) => {
+    return (
+        <form className="mt-4 mb-4">
         <div className="form-row">
           <div className="col-8">
             <textarea
@@ -38,11 +24,7 @@ const MyPosts = (props) => {
           </div>
         </div>
       </form>
-      {props.posts.map((post) => {
-        return <Post post={post} key={post.id}></Post>;
-      })}
-    </div>
-  );
-};
+    )
+}
 
-export default MyPosts;
+export default PostForm

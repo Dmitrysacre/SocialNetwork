@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
-      <div className="col-3">
+      <div className="col-2">
         <div className="nav flex-column nav-pills">
           <NavLink className="nav-link" to="/profile">Profile</NavLink>
           <NavLink className="nav-link" to="/users">Users</NavLink>

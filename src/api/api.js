@@ -37,3 +37,7 @@ export const getStatus = (id) => {
 export const updateStatus = (status) => {
   return axiosConfig.put(`profile/status`, {status})
 };
+
+export const login = (data) => {
+  return axiosConfig.post(`auth/login`, data)
+}
